@@ -17,7 +17,9 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
+  // default css: tailwind.css
   css: [
+    // '~/assets/css/main.css'
   ],
 
   srcDir: 'src/',
@@ -27,6 +29,8 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
+  // Discovered Components: .nuxt/components/readme.md
+  // ~/components/global: global components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -37,7 +41,10 @@ export default {
   //           Make product startup faster
   ngrok: {token: ''},   // https://ngrok.com token
   buildModules: [
-    '~/modules/ngrok'
+    '@nuxtjs/dotenv',
+    '~/modules/ngrok',
+    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
+    '@nuxtjs/tailwindcss'
   ],
 
   // https://nuxtjs.org/docs/directory-structure/modules
@@ -51,10 +58,23 @@ export default {
   exampleMsg: 'hello',
   modules: [
     // '~/modules/example',
-    ['~/modules/example', {token: '123'}]
+    ['~/modules/example', {token: '123'}],
+    '@nuxt/content'
   ],
 
+  /*
+   ** Content module configuration
+   ** See https://content.nuxtjs.org/configuration
+   */
+  content: {
+    markdown: {
+      prism: {
+        theme: 'prism-themes/themes/prism-material-oceanic.css'
+      }
+    },
+    nestedProperties: ['author.name']
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }
